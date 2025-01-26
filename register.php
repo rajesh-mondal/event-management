@@ -33,7 +33,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 </head>
 <body>
     <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card shadow-lg" style="width: 100%; max-width: 400px;">
+        <div class="card shadow-lg col-md-6">
             <div class="card-header text-center bg-primary text-white">
                 <h3>Register</h3>
             </div>
