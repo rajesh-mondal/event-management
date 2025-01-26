@@ -21,7 +21,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
             $_SESSION['username'] = $user['username'];
             $message = "<div class='alert alert-success'>Login Successful!</div>";
             // Redirect to dashboard after successful login
-            header("Location: dashboard.php");
+            header("Location: index.php");
             exit();
         } else {
             $message = "<div class='alert alert-danger'>Invalid Password.</div>";
