@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <?php include 'includes/header.php'; ?>
 <div class="container d-flex justify-content-center align-items-center vh-100 mb-5 ">
-    <div class="col-md-6">
+    <div class="col-12 col-md-8">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">Add New Event</h3>
             <a href="index.php" class="btn btn-sm btn-secondary">Back to Events</a>
