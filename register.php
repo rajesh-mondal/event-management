@@ -1,6 +1,8 @@
 <?php
 include 'db/db.php';
 
+$message = '';
+
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     $username = htmlspecialchars( $_POST['username'] );
     $email = htmlspecialchars( $_POST['email'] );
@@ -14,9 +16,9 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     $stmt->bind_param( "sss", $username, $email, $password );
 
     if ( $stmt->execute() ) {
-        echo "Registration successful!";
+        $message = '<div class="alert alert-success text-center mt-3">Registration successful!</div>';
     } else {
-        echo "Error: " . $stmt->error;
+        $message = '<div class="alert alert-danger text-center mt-3">Error: ' . $stmt->error . '</div>';
     }
     $stmt->close();
 }
@@ -33,29 +35,36 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 </head>
 <body>
     <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card shadow-lg col-md-6">
-            <div class="card-header text-center bg-primary text-white">
-                <h3>Register</h3>
-            </div>
-            <div class="card-body">
-                <form method="POST" action="">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Register</button>
-                </form>
-            </div>
-            <div class="card-footer text-center">
-                <p>Already have an account? <a href="login.php">Login</a></p>
+        <div class="col-md-6">
+            <?php if ( $message ): ?>
+                <div class="mb-3">
+                    <?=$message;?>
+                </div>
+            <?php endif; ?>
+            <div class="card shadow-lg">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3>Register</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <p>Already have an account? <a href="login.php">Login</a></p>
+                </div>
             </div>
         </div>
     </div>
