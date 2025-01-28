@@ -9,7 +9,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     $email = htmlspecialchars( $_POST['email'] );
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare( "SELECT id, username, password FROM users WHERE email = ?" );
+    $stmt = $conn->prepare( "SELECT id, username, password, role FROM users WHERE email = ?" );
     $stmt->bind_param( "s", $email );
     $stmt->execute();
     $result = $stmt->get_result();
@@ -19,9 +19,10 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
         if ( password_verify( $password, $user['password'] ) ) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
             $message = "<div class='alert alert-success'>Login Successful!</div>";
-            // Redirect to dashboard after successful login
-            header("Location: index.php");
+
+            header( "Location: index.php" );
             exit();
         } else {
             $message = "<div class='alert alert-danger'>Invalid Password.</div>";
