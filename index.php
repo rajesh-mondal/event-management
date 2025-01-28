@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 include 'db/db.php';
 
 // Fetch all events

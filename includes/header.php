@@ -17,23 +17,30 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <?php if ( isset( $_SESSION['role'] ) && $_SESSION['role'] === 'admin' ): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.php">Dashboard</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.php">Dashboard</a>
+                        <a class="nav-link" href="index.php">All Events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="create_event.php">Create Event</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="attendees.php">View Attendees</a>
+                        <a class="nav-link" href="register_attendee.php">Register for Event</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
+                    <?php if ( isset( $_SESSION['role'] ) && $_SESSION['role'] === 'admin' ): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="event_reports.php">View Attendees</a>
+                        </li>
+                    <?php endif; ?>
                     <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">Welcome, <?= htmlspecialchars($_SESSION['username'] ?? 'Guest'); ?></a>
+                        <a class="nav-link" href="#">Welcome, <?=htmlspecialchars( $_SESSION['username'] ?? 'Guest' );?></a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-danger text-danger" href="#">Logout</a>
+                        <a class="nav-link btn btn-outline-danger text-primary" href="#">Logout</a>
                     </li>
                 </ul>
             </div>
