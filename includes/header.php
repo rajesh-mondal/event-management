@@ -40,7 +40,7 @@
                         <a class="nav-link" href="#">Welcome, <?=htmlspecialchars( $_SESSION['username'] ?? 'Guest' );?></a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-danger text-primary" href="#">Logout</a>
+                        <a href="logout.php" class="btn btn-danger">Logout</a>
                     </li>
                 </ul>
             </div>
