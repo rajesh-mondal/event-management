@@ -11,7 +11,7 @@ $result = $conn->query( $query );
 <div class="container my-4">
     <h3 class="text-center">Event List</h3>
     <?php if ( isset( $_SESSION['role'] ) && $_SESSION['role'] === 'admin' ): ?>
-        <a href="create_event.php" class="btn btn-success">Add New Event</a>
+        <a href="create_event.php" class="btn btn-success mb-2">Add New Event</a>
     <?php endif; ?>
     <table id="eventTable" class="table table-bordered table-striped">
         <thead>
@@ -58,14 +58,14 @@ $result = $conn->query( $query );
     $(document).ready(function() {
         // Initialize DataTables
         $('#eventTable').DataTable({
-            "paging": true,         // Enable pagination
-            "searching": true,      // Enable search
-            "ordering": true,       // Enable column sorting
-            "pageLength": 10,        // Default number of items per page
-            "lengthChange": false   // Disable page length change dropdown
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            // "pageLength": 10,
+            // "lengthChange": false
         });
 
-        // Add Bootstrap margin class to the search wrapper
         $('div.dataTables_filter').addClass('mb-3');
     });
 </script>
