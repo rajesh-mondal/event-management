@@ -48,7 +48,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 <?php include 'includes/header.php'; ?>
 <div class="container d-flex justify-content-center align-items-center vh-100 my-5">
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-6">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">Edit Event</h3>
             <a href="index.php" class="btn btn-sm btn-secondary">Back to Events</a>
@@ -68,7 +68,8 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
             </div>
             <div class="mb-3">
                 <label for="event_time" class="form-label">Time</label>
-                <input type="time" class="form-control" id="event_time" name="event_time" value="<?= date("h:i A", strtotime($event['event_time'])); ?>" required>
+                <!-- <input type="time" class="form-control" id="event_time" name="event_time" value="<?= date("h:i A", strtotime($event['event_time'])); ?>" required> -->
+                <input type="time" class="form-control" id="event_time" name="event_time" value="<?= date("H:i", strtotime($event['event_time'])); ?>" required>
             </div>
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
