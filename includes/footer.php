@@ -1,5 +1,5 @@
 <!-- includes/footer.php -->
-</div> <!-- End of Main Content -->
+<!-- </div> -->
 
 <footer class="bg-body-tertiary text-secondary-emphasis text-center py-3 mt-auto">
     <p>&copy; <?= date('Y'); ?> Event Management. All rights reserved.</p>

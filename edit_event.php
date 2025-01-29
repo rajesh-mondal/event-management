@@ -24,6 +24,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     $name = htmlspecialchars( $_POST['name'] );
     $description = htmlspecialchars( $_POST['description'] );
     $event_date = $_POST['event_date'];
+    $event_time = $_POST['event_time'];
     $location = $_POST['location'];
     $max_capacity = $_POST['max_capacity'];
 
@@ -32,9 +33,9 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
         exit;
     }
 
-    $updateQuery = "UPDATE events SET name = ?, description = ?, event_date = ?, location = ?, max_capacity = ? WHERE id = ?";
+    $updateQuery = "UPDATE events SET name = ?, description = ?, event_date = ?, event_time = ?, location = ?, max_capacity = ? WHERE id = ?";
     $stmt = $conn->prepare( $updateQuery );
-    $stmt->bind_param( "ssssii", $name, $description, $event_date, $location, $max_capacity, $id );
+    $stmt->bind_param( "sssssii", $name, $description, $event_date, $event_time, $location, $max_capacity, $id );
 
     if ( $stmt->execute() ) {
         header( "Location: index.php?success=Event updated successfully" );
@@ -64,6 +65,10 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
             <div class="mb-3">
                 <label for="event_date" class="form-label">Date</label>
                 <input type="date" class="form-control" id="event_date" name="event_date" value="<?=$event['event_date'];?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="event_time" class="form-label">Time</label>
+                <input type="time" class="form-control" id="event_time" name="event_time" value="<?= date("h:i A", strtotime($event['event_time'])); ?>" required>
             </div>
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>

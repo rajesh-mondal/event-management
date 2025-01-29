@@ -8,7 +8,7 @@ $result = $conn->query( $query );
 ?>
 
 <?php include 'includes/header.php'; ?>
-<div class="container my-5">
+<div class="container my-4">
     <h3 class="text-center">Event List</h3>
     <?php if ( isset( $_SESSION['role'] ) && $_SESSION['role'] === 'admin' ): ?>
         <a href="create_event.php" class="btn btn-success">Add New Event</a>
@@ -20,6 +20,7 @@ $result = $conn->query( $query );
                 <th>Title</th>
                 <th>Description</th>
                 <th>Date</th>
+                <th>Time</th>
                 <th>Location</th>
                 <!-- <th>Capacity</th> -->
                 <th>Actions</th>
@@ -34,7 +35,8 @@ $result = $conn->query( $query );
                     <td><?=$serial++;?></td>
                     <td><?=htmlspecialchars( $event['name'] );?></td>
                     <td><?=htmlspecialchars( substr( $event['description'], 0, 45 ) );?>...</td>
-                    <td><?=$event['event_date'];?></td>
+                    <td><?= date("j M Y", strtotime($event['event_date'])); ?></td>
+                    <td><?= date("h:i A", strtotime($event['event_time'])); ?></td>
                     <td><?=$event['location'];?></td>
                     <!-- <td><?=$event['max_capacity'];?></td> -->
                     <td class="d-flex">
@@ -59,7 +61,7 @@ $result = $conn->query( $query );
             "paging": true,         // Enable pagination
             "searching": true,      // Enable search
             "ordering": true,       // Enable column sorting
-            "pageLength": 7,        // Default number of items per page
+            "pageLength": 10,        // Default number of items per page
             "lengthChange": false   // Disable page length change dropdown
         });
 
