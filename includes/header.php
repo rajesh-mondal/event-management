@@ -5,10 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Management System</title>
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap 5.3 CSS (Latest Version) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    
+    <!-- Custom Stylesheets -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/sidebar.css" rel="stylesheet">
-        <!-- Custom Sidebar Styles -->
+    <link href="assets/css/sidebar.css" rel="stylesheet"> <!-- Custom Sidebar Styles -->
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">

@@ -2,15 +2,15 @@
 session_start();
 include 'db/db.php';
 
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || strtolower($_SESSION['role']) !== 'admin') {
-    die("Access denied. Admins only.");
+if ( !isset( $_SESSION['user_id'] ) || !isset( $_SESSION['role'] ) || strtolower( $_SESSION['role'] ) !== 'admin' ) {
+    die( "Access denied. Admins only." );
 }
 
-$totalEvents = $conn->query("SELECT COUNT(*) AS total FROM events")->fetch_assoc()['total'];
-$totalAttendees = $conn->query("SELECT COUNT(*) AS total FROM attendees")->fetch_assoc()['total'];
-$newRegistrations = $conn->query("SELECT COUNT(*) AS total FROM users WHERE created_at >= NOW() - INTERVAL 7 DAY")->fetch_assoc()['total'];
+$totalEvents = $conn->query( "SELECT COUNT(*) AS total FROM events" )->fetch_assoc()['total'];
+$totalAttendees = $conn->query( "SELECT COUNT(*) AS total FROM attendees" )->fetch_assoc()['total'];
+$newRegistrations = $conn->query( "SELECT COUNT(*) AS total FROM users WHERE created_at >= NOW() - INTERVAL 7 DAY" )->fetch_assoc()['total'];
 
-$recentEvents = $conn->query("SELECT id, name, event_date, event_time, location FROM events ORDER BY event_date ASC LIMIT 10");
+$recentEvents = $conn->query( "SELECT id, name, event_date, event_time, location FROM events ORDER BY event_date ASC LIMIT 10" );
 ?>
 
 <?php include 'includes/header.php'; ?>
@@ -27,7 +27,7 @@ $recentEvents = $conn->query("SELECT id, name, event_date, event_time, location 
                     <div class="card text-white bg-primary">
                         <div class="card-body">
                             <h5 class="card-title">Total Events</h5>
-                            <p class="card-text display-6"><?= $totalEvents; ?></p>
+                            <p class="card-text display-6"><?=$totalEvents;?></p>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ $recentEvents = $conn->query("SELECT id, name, event_date, event_time, location 
                     <div class="card text-white bg-success">
                         <div class="card-body">
                             <h5 class="card-title">Total Attendees</h5>
-                            <p class="card-text display-6"><?= $totalAttendees; ?></p>
+                            <p class="card-text display-6"><?=$totalAttendees;?></p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@ $recentEvents = $conn->query("SELECT id, name, event_date, event_time, location 
                     <div class="card text-white bg-warning">
                         <div class="card-body">
                             <h5 class="card-title">New Registrations (Last 7 Days)</h5>
-                            <p class="card-text display-6"><?= $newRegistrations; ?></p>
+                            <p class="card-text display-6"><?=$newRegistrations;?></p>
                         </div>
                     </div>
                 </div>
@@ -61,15 +61,15 @@ $recentEvents = $conn->query("SELECT id, name, event_date, event_time, location 
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $serial = 1; while ($event = $recentEvents->fetch_assoc()): ?>
+                    <?php $serial = 1;while ( $event = $recentEvents->fetch_assoc() ): ?>
                     <tr>
-                        <td><?= $serial++; ?></td>
-                        <td><?= htmlspecialchars($event['name']); ?></td>
-                        <td><?= date("j M Y", strtotime($event['event_date'])); ?></td>
-                        <td><?= htmlspecialchars($event['location']); ?></td>
+                        <td><?=$serial++;?></td>
+                        <td><?=htmlspecialchars( $event['name'] );?></td>
+                        <td><?=date( "j M Y", strtotime( $event['event_date'] ) );?></td>
+                        <td><?=htmlspecialchars( $event['location'] );?></td>
                         <td>
                             <form method="POST" action="download_report.php" class="d-inline">
-                                <input type="hidden" name="event_id" value="<?= $event['id']; ?>">
+                                <input type="hidden" name="event_id" value="<?=$event['id'];?>">
                                 <button type="submit" class="btn btn-primary btn-sm">Download Attendees</button>
                             </form>
                         </td>
@@ -80,13 +80,6 @@ $recentEvents = $conn->query("SELECT id, name, event_date, event_time, location 
         </main>
     </div>
 </div>
-
-<!-- Bootstrap 5.3 CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<!-- DataTables CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
