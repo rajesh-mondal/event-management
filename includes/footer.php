@@ -1,8 +1,8 @@
 <!-- includes/footer.php -->
 <!-- </div> -->
 
-<footer class="bg-body-tertiary text-secondary-emphasis text-center py-3 mt-auto">
-    <p>&copy; <?=date( 'Y' );?> Event Management. All rights reserved.</p>
+<footer class="footer-custom text-white text-center py-3 mt-auto">
+    <p class="mb-0">&copy; <?=date( 'Y' );?> Event Management. All rights reserved.</p>
 </footer>
 
 <!-- jQuery JS -->

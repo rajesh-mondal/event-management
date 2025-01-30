@@ -1,46 +1,54 @@
-.sidebar {
-    background-color: #1c1c1e;
+/* Sidebar Styles */
+.sidebar-custom {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
     padding: 20px;
     border-radius: 10px;
+    color: white;
+    min-height: 100vh;
 }
 
-.sidebar h4 {
-    font-size: 1.3rem;
+.sidebar-custom h4 {
+    font-size: 1.2rem;
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
+/* Sidebar Links */
 .sidebar-link {
     font-size: 1.0rem;
     padding: 12px;
     border-radius: 8px;
     display: flex;
     align-items: center;
+    color: white;
+    text-decoration: none;
     transition: background 0.3s ease-in-out, padding-left 0.3s;
 }
 
 .sidebar-link i {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-right: 10px;
 }
 
 .sidebar-link:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.767);
     padding-left: 15px;
 }
 
+/* Logout Button */
 .logout-link {
     font-size: 1.0rem;
     padding: 12px;
     border-radius: 8px;
     display: flex;
     align-items: center;
-    transition: background 0.3s ease-in-out, padding-left 0.3s;
     font-weight: 600;
     margin-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.671);
     padding-top: 15px;
+    transition: background 0.3s ease-in-out, padding-left 0.3s, box-shadow 0.3s;
+    color: white;
 }
 
 .logout-link i {
@@ -50,6 +58,8 @@
 }
 
 .logout-link:hover {
-    background-color: rgba(255, 0, 0, 0.2);
+    background-color: rgba(255, 0, 0, 0.616);
     padding-left: 15px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    color: white; /* Keeps text white on hover */
 }

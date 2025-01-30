@@ -1,0 +1,55 @@
+/* Navbar Custom Styles */
+.navbar-custom {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.navbar-custom .navbar-brand {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.navbar-custom .nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+.navbar-custom .nav-link:hover {
+    color: #f8d210 !important; /* Simple hover color change */
+}
+.navbar-custom .navbar-toggler {
+    border: none;
+}
+.navbar-custom .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+.logout-btn {
+    background-color: #ff4d4d;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: white;
+}
+.logout-btn:hover {
+    background-color: #cc0000;
+}
+
+/* Footer Custom Styles */
+.footer-custom {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+.footer-custom p {
+    margin: 0;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+.footer-custom p:hover {
+    color: #f8d210;
+}
+
