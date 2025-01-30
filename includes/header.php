@@ -7,6 +7,8 @@
     <title>Event Management System</title>
     <!-- Bootstrap CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/sidebar.css" rel="stylesheet">
+        <!-- Custom Sidebar Styles -->
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
