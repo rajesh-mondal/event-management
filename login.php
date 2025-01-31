@@ -1,11 +1,11 @@
 <?php
 include 'db/db.php';
-
 session_start();
 
-$message = '';
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' && isset( $_POST['ajax'] ) ) {
+    header( "Content-Type: application/json" );
+    $response = [];
 
-if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     $email = htmlspecialchars( $_POST['email'] );
     $password = $_POST['password'];
 
@@ -20,19 +20,27 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
-            $message = "<div class='alert alert-success'>Login Successful!</div>";
 
-            header( "Location: index.php" );
-            exit();
+            if ( $user['role'] === 'admin' ) {
+                $response["redirect"] = "dashboard.php";
+            } else {
+                $response["redirect"] = "index.php";
+            }
+
+            $response["success"] = "Login Successful!";
         } else {
-            $message = "<div class='alert alert-danger'>Invalid Password.</div>";
+            $response["error"] = "Invalid Password.";
         }
     } else {
-        $message = "<div class='alert alert-danger'>No user found with this email.</div>";
+        $response["error"] = "No user found with this email.";
     }
+
     $stmt->close();
+    echo json_encode( $response );
+    exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,22 +49,19 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="bg-light d-flex align-items-center justify-content-center vh-100">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <?php if ( $message ): ?>
-                    <div class="mb-3">
-                        <?=$message;?>
-                    </div>
-                <?php endif; ?>
+                <div id="message"></div>
                 <div class="card shadow">
                     <div class="card-header bg-primary text-white text-center">
                         <h4>Login</h4>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="">
+                        <form id="loginForm">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
@@ -78,5 +83,41 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
         </div>
     </div>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#loginForm").submit(function(e){
+                e.preventDefault();
+
+                $.ajax({
+                    url: "login.php",
+                    type: "POST",
+                    data: $(this).serialize() + "&ajax=1",
+                    dataType: "json",
+                    beforeSend: function() {
+                        $("button").prop("disabled", true).text("Logging in...");
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $("#message").html('<div class="alert alert-success text-center mt-3">' + response.success + '</div>');
+                            setTimeout(function() {
+                                window.location.href = response.redirect;
+                            }, 1500);
+                        } else {
+                            $("#message").html('<div class="alert alert-danger text-center mt-3">' + response.error + '</div>');
+                            $("button").prop("disabled", false).text("Login");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                        $("#message").html('<div class="alert alert-danger text-center mt-3">Something went wrong!</div>');
+                        $("button").prop("disabled", false).text("Login");
+                    }
+                });
+            });
+        });
+
+    </script>
+
 </body>
 </html>
