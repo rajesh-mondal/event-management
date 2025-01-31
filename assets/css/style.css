@@ -53,3 +53,20 @@
     color: #f8d210;
 }
 
+/* Index Page CSS */
+.event-card {
+    transition: transform 0.3s ease-in-out;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.event-card:hover {
+    transform: scale(1.03);
+}
+.event-icons p {
+    margin: 1;
+    font-size: 15px;
+}
+.event-icons i {
+    margin-right: 8px;
+    color: #25292d;
+}
