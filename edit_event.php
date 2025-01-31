@@ -38,7 +38,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     $stmt->bind_param( "sssssii", $name, $description, $event_date, $event_time, $location, $max_capacity, $id );
 
     if ( $stmt->execute() ) {
-        header( "Location: index.php?success=Event updated successfully" );
+        header( "Location: all_events.php?success=Event updated successfully" );
     } else {
         echo "Error: " . $stmt->error;
     }

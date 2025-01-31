@@ -38,7 +38,7 @@
                         </li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="all_event.php">All Events</a>
+                        <a class="nav-link" href="all_events.php">All Events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="create_event.php">Create Event</a>
