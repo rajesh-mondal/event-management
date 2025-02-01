@@ -3,12 +3,12 @@
 require_once 'db/db.php';
 session_start();
 
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || strtolower($_SESSION['role']) !== 'admin') {
-    die("Access denied. Admins only.");
+if ( !isset( $_SESSION['user_id'] ) || !isset( $_SESSION['role'] ) || strtolower( $_SESSION['role'] ) !== 'admin' ) {
+    die( "Access denied. Admins only." );
 }
 
 $eventsQuery = "SELECT * FROM events ORDER BY event_date";
-$eventsResult = $conn->query($eventsQuery);
+$eventsResult = $conn->query( $eventsQuery );
 ?>
 
 <?php include 'includes/header.php'; ?>
@@ -30,18 +30,18 @@ $eventsResult = $conn->query($eventsQuery);
                 </tr>
             </thead>
             <tbody>
-                <?php 
+                <?php
                 $serial = 1;
-                while ($event = $eventsResult->fetch_assoc()): 
+                while ( $event = $eventsResult->fetch_assoc() ):
                 ?>
                     <tr>
-                        <td><?= $serial++; ?></td>
-                        <td><?= htmlspecialchars($event['name']); ?></td>
-                        <td><?= date("j M Y", strtotime($event['event_date'])); ?></td>
+                        <td><?=$serial++;?></td>
+                        <td><?=htmlspecialchars( $event['name'] );?></td>
+                        <td><?=date( "j M Y", strtotime( $event['event_date'] ) );?></td>
                         <td><?=$event['location'];?></td>
                         <td>
                             <form method="POST" action="download_report.php" class="d-inline">
-                                <input type="hidden" name="event_id" value="<?= $event['id']; ?>">
+                                <input type="hidden" name="event_id" value="<?=$event['id'];?>">
                                 <button type="submit" class="btn btn-primary btn-sm">Download Attendees</button>
                             </form>
                         </td>
@@ -59,10 +59,10 @@ $eventsResult = $conn->query($eventsQuery);
 <script>
 $(document).ready(function() {
     $('#eventTable').DataTable({
-        "paging": true, 
-        "searching": true, 
-        "ordering": true, 
-        "info": true 
+        "paging": true,
+        "searching": true,
+        "ordering": true,
+        "info": true
     });
 });
 </script>

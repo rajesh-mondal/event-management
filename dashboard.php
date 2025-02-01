@@ -10,7 +10,7 @@ $totalEvents = $conn->query( "SELECT COUNT(*) AS total FROM events" )->fetch_ass
 $totalAttendees = $conn->query( "SELECT COUNT(*) AS total FROM attendees" )->fetch_assoc()['total'];
 $newRegistrations = $conn->query( "SELECT COUNT(*) AS total FROM users WHERE created_at >= NOW() - INTERVAL 7 DAY" )->fetch_assoc()['total'];
 
-$recentEvents = $conn->query( "SELECT id, name, event_date, event_time, location FROM events ORDER BY event_date ASC LIMIT 10" );
+$recentEvents = $conn->query( "SELECT id, name, event_date, event_time, location FROM events ORDER BY event_date ASC LIMIT 30" );
 ?>
 
 <?php include 'includes/header.php'; ?>
@@ -94,7 +94,7 @@ $recentEvents = $conn->query( "SELECT id, name, event_date, event_time, location
             "paging": true,
             "searching": true,
             "ordering": true,
-            "pageLength": 5,
+            "pageLength": 10,
             "lengthChange": false
         });
     });
