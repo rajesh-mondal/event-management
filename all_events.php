@@ -28,20 +28,29 @@ $result = $conn->query( $query );
         </thead>
         <tbody>
             <?php
-                $serial = 1;
-                while ( $event = $result->fetch_assoc() ): 
-            ?>
+$serial = 1;
+while ( $event = $result->fetch_assoc() ):
+?>
                 <tr>
                     <td><?=$serial++;?></td>
                     <td><?=htmlspecialchars( $event['name'] );?></td>
                     <td><?=htmlspecialchars( substr( $event['description'], 0, 45 ) );?>...</td>
-                    <td><?= date("j M Y", strtotime($event['event_date'])); ?></td>
-                    <td><?= date("h:i A", strtotime($event['event_time'])); ?></td>
+                    <td><?=date( "j M Y", strtotime( $event['event_date'] ) );?></td>
+                    <td><?=date( "h:i A", strtotime( $event['event_time'] ) );?></td>
                     <td><?=$event['location'];?></td>
                     <!-- <td><?=$event['max_capacity'];?></td> -->
+
                     <td class="d-flex">
-                        <a href="edit_event.php?id=<?=$event['id'];?>" class="btn btn-primary btn-sm me-2">Edit</a>
-                        <a href="delete_event.php?id=<?=$event['id'];?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this event?');">Delete</a>
+                        <?php if ( isset( $_SESSION['role'] ) && $_SESSION['role'] === 'admin' ): ?>
+                            <a href="edit_event.php?id=<?=$event['id'];?>" class="btn btn-primary btn-sm me-2">Edit</a>
+                            <a href="delete_event.php?id=<?=$event['id'];?>" class="btn btn-danger btn-sm me-2" onclick="return confirm('Are you sure you want to delete this event?');">Delete</a>
+
+                        <?php elseif ( isset( $_SESSION['user_id'] ) && $_SESSION['user_id'] == $event['created_by'] ): ?>
+                            <a href="edit_event.php?id=<?=$event['id'];?>" class="btn btn-primary btn-sm me-2">Edit</a>
+                            <a href="delete_event.php?id=<?=$event['id'];?>" class="btn btn-danger btn-sm me-2" onclick="return confirm('Are you sure you want to delete this event?');">Delete</a>
+                        <?php endif; ?>
+
+                        <a href="event_details.php?id=<?=$event['id'];?>" class="btn btn-info btn-sm">View</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

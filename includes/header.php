@@ -1,4 +1,3 @@
-<!-- includes/header.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,9 +50,18 @@
                             <a class="nav-link" href="event_reports.php">View Attendees</a>
                         </li>
                     <?php endif; ?>
-                    <li class="nav-item ps-2">
-                        <a href="logout.php" class="btn logout-btn">Logout</a>
-                    </li>
+
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <!-- Show Logout if user is logged in -->
+                        <li class="nav-item ps-2">
+                            <a href="logout.php" class="btn btn-danger">Logout</a>
+                        </li>
+                    <?php else: ?>
+                        <!-- Show Login if user is not logged in -->
+                        <li class="nav-item ps-2">
+                            <a href="login.php" class="btn btn-primary">Login</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

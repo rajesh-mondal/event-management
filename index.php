@@ -30,7 +30,7 @@ $events = $stmt->get_result();
                     <div class="card event-card shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title text-primary-emphasis fw-semibold"> <?=htmlspecialchars( $event['name'] );?> </h5>
-                            <p class="text-muted"> <?=htmlspecialchars( $event['description'] );?> </p>
+                            <p class="text-muted"><?= htmlspecialchars(mb_strlen($event['description']) > 300 ? mb_substr($event['description'], 0, 300) . '...' : $event['description']); ?></p>
                             <div class="event-icons">
                                 <p><i class="fa-solid fa-calendar"></i> <?=date( "j F Y", strtotime( $event['event_date'] ) );?></p>
                                 <p><i class="fa-solid fa-clock"></i> <?=date( "g:i A", strtotime( $event['event_time'] ) );?></p>
