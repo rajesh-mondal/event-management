@@ -8,13 +8,23 @@
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a class="nav-link sidebar-link" href="index.php">
-                    <i class="bi bi-calendar-event"></i> Events
+                <a class="nav-link sidebar-link" href="all_events.php">
+                    <i class="bi bi-calendar-check"></i> All Events
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link sidebar-link" href="create_event.php">
+                    <i class="bi bi-calendar-plus"></i> Create Event
+                </a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link sidebar-link" href="register_attendee.php">
+                    <i class="bi bi-person-add"></i> Register Attendee
                 </a>
             </li>
             <li class="nav-item mb-2">
                 <a class="nav-link sidebar-link" href="event_reports.php">
-                    <i class="bi bi-people"></i> Attendees
+                    <i class="bi bi-file-earmark-bar-graph"></i> Event Reports
                 </a>
             </li>
             <li class="nav-item mb-2">

@@ -7,7 +7,7 @@ $stmt = $conn->prepare( $query );
 $stmt->bind_param( "i", $id );
 
 if ( $stmt->execute() ) {
-    header( "Location: index.php?success=Event deleted successfully" );
+    header( "Location: all_events.php?success=Event deleted successfully" );
 } else {
     echo "Error: " . $stmt->error;
 }

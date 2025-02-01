@@ -47,7 +47,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 ?>
 
 <?php include 'includes/header.php'; ?>
-<div class="container d-flex justify-content-center align-items-center vh-100 my-5">
+<div class="container d-flex justify-content-center align-items-center my-5">
     <div class="col-12 col-md-6">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">Edit Event</h3>

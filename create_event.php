@@ -2,32 +2,32 @@
 include 'db/db.php';
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
+if ( !isset( $_SESSION['user_id'] ) ) {
     echo "Error: You must be logged in to create an event.";
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = htmlspecialchars($_POST['name']);
-    $description = htmlspecialchars($_POST['description']);
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+    $name = htmlspecialchars( $_POST['name'] );
+    $description = htmlspecialchars( $_POST['description'] );
     $event_date = $_POST['event_date'];
     $event_time = $_POST['event_time'];
     $location = $_POST['location'];
     $max_capacity = $_POST['max_capacity'];
-    
+
     $created_by = $_SESSION['user_id'];
 
-    if (empty($max_capacity)) {
+    if ( empty( $max_capacity ) ) {
         echo "Error: Capacity cannot be empty.";
         exit;
     }
 
-    $stmt = $conn->prepare("INSERT INTO events (name, description, event_date, event_time, location, max_capacity, created_by) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare( "INSERT INTO events (name, description, event_date, event_time, location, max_capacity, created_by) VALUES (?, ?, ?, ?, ?, ?, ?)" );
 
-    $stmt->bind_param("sssssii", $name, $description, $event_date, $event_time, $location, $max_capacity, $created_by);
+    $stmt->bind_param( "sssssii", $name, $description, $event_date, $event_time, $location, $max_capacity, $created_by );
 
-    if ($stmt->execute()) {
-        header("Location: index.php?success=Event added successfully");
+    if ( $stmt->execute() ) {
+        header( "Location: all_events.php?success=Event added successfully" );
     } else {
         echo "Error: " . $stmt->error;
     }
@@ -36,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <?php include 'includes/header.php'; ?>
-<div class="container d-flex justify-content-center align-items-center vh-100 my-5 ">
+<div class="container d-flex justify-content-center align-items-center my-5 ">
     <div class="col-12 col-md-6">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="mb-0">Add New Event</h3>
-            <a href="index.php" class="btn btn-sm btn-secondary">Back to Events</a>
+            <a href="all_events.php" class="btn btn-sm btn-secondary">Back to Events</a>
         </div>
         <form method="POST" action="">
             <div class="mb-3">

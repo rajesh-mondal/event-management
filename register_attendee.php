@@ -74,7 +74,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 ?>
 
 <?php include 'includes/header.php'; ?>
-<div class="container my-4">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <?php if ( $message ): ?>

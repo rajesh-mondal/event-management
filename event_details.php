@@ -86,7 +86,7 @@ $conn->close();
 
 <?php include 'includes/header.php'; ?>
 
-<div class="container">
+<div class="container my-5">
     <div class="event-container">
         <h2 class="event-header"><?=htmlspecialchars( $event['name'] );?></h2>
 

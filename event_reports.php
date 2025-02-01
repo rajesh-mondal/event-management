@@ -16,7 +16,7 @@ $eventsResult = $conn->query($eventsQuery);
 <!-- DataTables CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
-<div class="container my-4">
+<div class="container my-5">
     <h3 class="mb-3">Event Reports</h3>
     <div class="table-responsive">
         <table id="eventTable" class="table table-striped table-bordered">

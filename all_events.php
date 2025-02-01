@@ -28,9 +28,9 @@ $result = $conn->query( $query );
         </thead>
         <tbody>
             <?php
-$serial = 1;
-while ( $event = $result->fetch_assoc() ):
-?>
+                $serial = 1;
+                while ( $event = $result->fetch_assoc() ):
+            ?>
                 <tr>
                     <td><?=$serial++;?></td>
                     <td><?=htmlspecialchars( $event['name'] );?></td>
